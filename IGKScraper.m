@@ -1931,14 +1931,14 @@ NSString *const kIGKDocsetPrefixPath = @"Contents/Resources/Documents/documentat
 		void (^parseOptionsTable)(NSManagedObject *, NSArray *) = ^(NSManagedObject *bindingsObject, NSArray *parentChildren) {
 		
 			if ([parentChildren count])
-			{				
+			{		
+				BOOL isPlaceholders = NO;
+				
 				for (NSXMLNode *m in parentChildren)
 				{
 					if (![m isKindOfClass:[NSXMLElement class]])
 						continue;
-					
-					BOOL isPlaceholders = NO;
-					
+										
 					//Find out what kind of objects we will be creating
 					if ([[[m name] lowercaseString] isEqual:@"span"])
 					{
@@ -1946,7 +1946,9 @@ NSString *const kIGKDocsetPrefixPath = @"Contents/Resources/Documents/documentat
 						if ([mStringValue isEqual:@"Binding Options"])
 							isPlaceholders = NO;
 						else if ([mStringValue isEqual:@"Placeholders"])
+						{
 							isPlaceholders = YES;
+						}
 						
 						continue;
 					}
@@ -1970,17 +1972,23 @@ NSString *const kIGKDocsetPrefixPath = @"Contents/Resources/Documents/documentat
 									continue;
 								
 								//This is a data row so create a new managed object
-								if (!subobject && isPlaceholders)
+								if (!subobject)
 								{
-									if (!ObjCBindingPlaceholderEntity)
-										ObjCBindingPlaceholderEntity = [NSEntityDescription entityForName:@"ObjCBindingPlaceholder" inManagedObjectContext:transientContext];
-									subobject = [[NSManagedObject alloc] initWithEntity:ObjCBindingPlaceholderEntity insertIntoManagedObjectContext:transientContext];
-								}
-								else if (!subobject)
-								{
-									if (!ObjCBindingOptionEntity)
-										ObjCBindingOptionEntity = [NSEntityDescription entityForName:@"ObjCBindingOption" inManagedObjectContext:transientContext];
-									subobject = [[NSManagedObject alloc] initWithEntity:ObjCBindingOptionEntity insertIntoManagedObjectContext:transientContext];
+									if (isPlaceholders)
+									{
+										if (!ObjCBindingPlaceholderEntity)
+											ObjCBindingPlaceholderEntity = [NSEntityDescription entityForName:@"ObjCBindingPlaceholder" inManagedObjectContext:transientContext];
+										subobject = [[NSManagedObject alloc] initWithEntity:ObjCBindingPlaceholderEntity insertIntoManagedObjectContext:transientContext];
+										
+										
+									}
+									else
+									{
+										if (!ObjCBindingOptionEntity)
+											ObjCBindingOptionEntity = [NSEntityDescription entityForName:@"ObjCBindingOption" inManagedObjectContext:transientContext];
+										subobject = [[NSManagedObject alloc] initWithEntity:ObjCBindingOptionEntity insertIntoManagedObjectContext:transientContext];
+										
+									}
 								}
 								
 								//Try to set the option's type
@@ -2009,6 +2017,7 @@ NSString *const kIGKDocsetPrefixPath = @"Contents/Resources/Documents/documentat
 								if (cellStringValue)
 								{
 									[subobject setValue:cellStringValue forKey:@"valueClass"];
+									continue;
 								}
 							}
 							
