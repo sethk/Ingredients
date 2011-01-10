@@ -1082,7 +1082,10 @@ NSString *const kIGKDocsetPrefixPath = @"Contents/Resources/Documents/documentat
 		
 		//signature (methods only)
 		// <p class="spaceabovemethod"> ... </p>
-		if ([nClass containsObject:@"spaceabovemethod"] || [nClass containsObject:@"zshareddeclarationblockjavaobjc"])
+		// <div class="declaration"> ... </div>
+		if ([nClass containsObject:@"spaceabovemethod"] ||
+			[nClass containsObject:@"zshareddeclarationblockjavaobjc"] ||
+			[nClass containsObject:@"declaration"])
 		{
 			NSMutableString *prototype = [[NSMutableString alloc] init];
 			[prototype appendString:[n commentlessStringValue]];
