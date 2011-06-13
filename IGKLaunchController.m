@@ -10,6 +10,7 @@
 #import "IGKScraper.h"
 #import "IGKApplicationDelegate.h"
 #import "IGKWordMembership.h"
+#import "FUCoreDataStore.h"
 
 @interface IGKLaunchController ()
 
@@ -98,6 +99,15 @@
 	for (NSString *sharedPath in NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSAllDomainsMask, YES))
 	{
 		NSString *docsetSharedPath = [sharedPath stringByAppendingPathComponent:@"Developer/Shared/Documentation/DocSets"];
+		if ([[NSFileManager defaultManager] fileExistsAtPath:docsetSharedPath])
+		{
+			[self addDocsetsInPath:docsetSharedPath
+						   toArray:docsetPaths
+						       set:docsetPathsSet
+				developerDirectory:@"Shared"];
+		}
+        
+        docsetSharedPath = [sharedPath stringByAppendingPathComponent:@"Developer/Documentation/DocSets"];
 		if ([[NSFileManager defaultManager] fileExistsAtPath:docsetSharedPath])
 		{
 			[self addDocsetsInPath:docsetSharedPath
@@ -272,14 +282,72 @@
 		
 		//All paths have been reported
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"IGKHasIndexedAllPaths" object:self];
-	});
+        
+        [self showFoundNoPathsError];
+    });
+}
+- (void)showFoundNoPathsError
+{
+    /*
+    NSEntityDescription *docRecordEntity = [NSEntityDescription entityForName:@"DocRecord" inManagedObjectContext:[appController managedObjectContext]];
+    
+    NSFetchRequest *fetchEverything = [[NSFetchRequest alloc] init];
+    [fetchEverything setEntity:docRecordEntity];
+    [fetchEverything setFetchLimit:20];
+    */
+    
+    NSManagedObjectContext *ctx = [appController managedObjectContext];
+	dispatch_queue_t queue = [appController backgroundQueue];
+	
+	if (!queue)
+		return;
+	/*
+	dispatch_sync(queue, ^{
+		
+		//Oh god, Core Data was *NOT* meant to be used like this
+		NSEntityDescription *docRecordEntity = [NSEntityDescription entityForName:@"DocRecord" inManagedObjectContext:ctx];
+		NSPropertyDescription *nameProperty = [[docRecordEntity propertiesByName] valueForKey:@"name"];
+		
+		NSFetchRequest *fetchEverything = [[NSFetchRequest alloc] init];
+		[fetchEverything setEntity:docRecordEntity];
+		[fetchEverything setResultType:NSDictionaryResultType];
+		[fetchEverything setReturnsDistinctResults:YES];
+		[fetchEverything setPropertiesToFetch:[NSArray arrayWithObject:nameProperty]];
+		
+		//NSArray *objects = [ctx executeFetchRequest:fetchEverything error:nil];
+		
+		//NSLog(@"All names: %d", [objects count]);
+		
+        NSUInteger c = [ctx countForFetchRequest:fetchEverything error:nil];
+        
+        if (c < 10)
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:@"Ingredients could not find any documentation to index."];
+            [alert setInformativeText:@"This is usually because Xcode has not downloaded documentation. Try going to Xcode's Documentation preferences and making sure the docsets you want have been downloaded.\n\nThis can also happen if you're using a newly released version of Xcode and Ingredients has not yet been updated to support it."];
+            [alert addButtonWithTitle:@"Quit"];
+            
+            NSInteger answer = [alert runModal];
+            
+            NSString *appSupportPath = [@"~/Library/Application Support/Ingredients/" stringByExpandingTildeInPath];
+            
+            [[NSFileManager defaultManager] removeItemAtPath:appSupportPath error:nil];
+            
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"docsets"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ShutdownBad"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"storeVersion"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [NSApp terminate:nil];
+        }
+	});*/
 }
 
 - (void)finishedLoading
 {
-	NSManagedObjectContext *ctx = [appController managedObjectContext];
+	NSManagedObjectContext *ctx = [appController backgroundManagedObjectContext];
 	dispatch_queue_t queue = [appController backgroundQueue];
-	
+	NSLog(@"FINISHED LOADING: %d", queue);
 	if (!queue)
 		return;
 	
@@ -295,15 +363,60 @@
 		[fetchEverything setReturnsDistinctResults:YES];
 		[fetchEverything setPropertiesToFetch:[NSArray arrayWithObject:nameProperty]];
 		
-		NSArray *objects = [ctx executeFetchRequest:fetchEverything error:nil];
 		
-		NSLog(@"All names: %d", [objects count]);
+		id fu = [ctx fffffffuuuuuuuuuuuu];
+
+		[[fu database] executeUpdate:@"CREATE INDEX IF NOT EXISTS fileability_docrecord_name ON ZDOCRECORD (ZNAME COLLATE NOCASE)"];
+
+		FMResultSet *rset = [[fu database] executeQuery:@"SELECT DISTINCT ZNAME FROM ZDOCRECORD" withArgumentsInArray:[NSArray array]];
+		//id objects = [fu magicObjectsForResultSet:rset];
 		
-		IGKWordMembership *wordMembershipManager = [IGKWordMembership sharedManagerWithCapacity:[objects count]];
-		NSCharacterSet *uppercaseCharacters = [NSCharacterSet uppercaseLetterCharacterSet];
-		for (NSDictionary *dict in objects)
+		NSMutableArray *names = [[NSMutableArray alloc] init];
+		while ([rset next])
 		{
-			NSString *name = [dict valueForKey:@"name"];
+			id name = [rset stringForColumnIndex:0];
+			if (name)
+				[names addObject:name];
+		}
+		
+		
+		[rset close];
+	/*
+		
+		NSArray *objects = [ctx executeFetchRequest:fetchEverything error:nil];
+	*/	
+		NSLog(@"[names count] = %d", [names count]);
+        if ([names count] < 10)
+        {
+            dispatch_sync(dispatch_get_main_queue(), ^(void) {
+            
+                NSAlert *alert = [[NSAlert alloc] init];
+                [alert setMessageText:@"Ingredients could not find any documentation to index."];
+                [alert setInformativeText:@"This is usually because Xcode has not downloaded documentation. Try going to Xcode's Documentation preferences and making sure the docsets you want have been downloaded.\n\nThis can also happen if you're using a newly released version of Xcode and Ingredients has not yet been updated to support it."];
+                [alert addButtonWithTitle:@"Quit"];
+                
+                NSInteger answer = [alert runModal];
+                
+                NSString *appSupportPath = [@"~/Library/Application Support/Ingredients/" stringByExpandingTildeInPath];
+                /*
+                [[NSFileManager defaultManager] removeItemAtPath:appSupportPath error:nil];
+                
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"docsets"];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ShutdownBad"];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"storeVersion"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                */
+                [NSApp terminate:nil];
+                    return;
+            });
+        }
+                
+		NSLog(@"All names: %d", [names count]);
+		
+		IGKWordMembership *wordMembershipManager = [IGKWordMembership sharedManagerWithCapacity:[names count]];
+		NSCharacterSet *uppercaseCharacters = [NSCharacterSet uppercaseLetterCharacterSet];
+		for (NSString *name in names)
+		{
 			if (![name length])
 				continue;
 			
@@ -353,7 +466,7 @@
 		
 		if ([docsetsSet containsObject:path])
 			continue;
-		
+        
 		[docsetPathsArray addObject:path];
 		[docsetsSet addObject:path];
 	}

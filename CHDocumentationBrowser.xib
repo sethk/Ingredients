@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">10F569</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
 		<string key="IBDocument.InterfaceBuilderVersion">762</string>
-		<string key="IBDocument.AppKitVersion">1038.29</string>
+		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -18,20 +18,21 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>762</string>
 				<string>762</string>
-				<string>1.2.2</string>
+				<string>1.2.5</string>
 			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="42"/>
-			<integer value="1"/>
-			<integer value="590"/>
+			<integer value="714"/>
+			<integer value="370"/>
+			<integer value="818"/>
 			<integer value="63"/>
-			<integer value="759"/>
+			<integer value="42"/>
 			<integer value="20"/>
-			<integer value="373"/>
-			<integer value="820"/>
 			<integer value="189"/>
+			<integer value="83"/>
+			<integer value="1"/>
+			<integer value="571"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -51,7 +52,7 @@
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSCustomObject" id="1001">
-				<string key="NSClassName">IGKWindowController</string>
+				<string key="NSClassName">IGKTabController</string>
 			</object>
 			<object class="NSCustomObject" id="1003">
 				<string key="NSClassName">FirstResponder</string>
@@ -126,9 +127,9 @@
 						<reference key="NSSuperview" ref="4605457"/>
 						<bool key="NSIsVertical">YES</bool>
 						<int key="NSDividerStyle">2</int>
-						<object class="NSColor" key="BWSVColor" id="239672116">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
+						<object class="NSColor" key="BWSVColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC45NjAzMDYxNjYgMC4xMTkwNTk4NjE1IDAuODE5NDU0NzQ2AA</bytes>
 						</object>
 						<bool key="BWSVColorIsEnabled">NO</bool>
 						<object class="NSMutableDictionary" key="BWSVMinValues">
@@ -262,7 +263,10 @@
 																<int key="NSColorSpace">6</int>
 																<string key="NSCatalogName">System</string>
 																<string key="NSColorName">headerTextColor</string>
-																<reference key="NSColor" ref="239672116"/>
+																<object class="NSColor" key="NSColor" id="239672116">
+																	<int key="NSColorSpace">3</int>
+																	<bytes key="NSWhite">MAA</bytes>
+																</object>
 															</object>
 														</object>
 														<object class="NSImageCell" key="NSDataCell" id="605973596">
@@ -2180,7 +2184,6 @@
 											</object>
 										</object>
 										<string key="NSFrameSize">{620, 86}</string>
-										<string key="NSBounds">{{0, 14}, {620, 86}}</string>
 										<reference key="NSSuperview" ref="789137853"/>
 										<reference key="NSNextKeyView" ref="634523087"/>
 										<reference key="NSDocView" ref="634523087"/>
@@ -2198,7 +2201,6 @@
 										<bool key="NSEnabled">YES</bool>
 										<reference key="NSTarget" ref="789137853"/>
 										<string key="NSAction">_doScroller:</string>
-										<double key="NSCurValue">1</double>
 										<double key="NSPercent">0.85999999999999999</double>
 									</object>
 									<object class="NSScroller" id="881807074">
@@ -2355,15 +2357,25 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC41NTc2NjQ2OTI0IDAuNTk4ODkyNTA5OSAwLjY0Mjg1NzEzNDMAA</bytes>
 						</object>
+						<object class="NSColor" key="BWGBRightBorderColor" id="703852755">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwAA</bytes>
+						</object>
 						<object class="NSColor" key="BWGBBottomBorderColor">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MC41NTY4NjI3NzE1IDAuNTU2ODYyNzcxNSAwLjU1Njg2Mjc3MTUAA</bytes>
 						</object>
+						<reference key="BWGBLeftBorderColor" ref="703852755"/>
 						<bool key="BWGBHasTopBorder">NO</bool>
+						<bool key="BWGBHasRightBorder">NO</bool>
 						<bool key="BWGBHasBottomBorder">YES</bool>
+						<bool key="BWGBHasLeftBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
+						<bool key="BWGBisVertical">NO</bool>
+						<float key="BWGBTopInsetAlpha">0.0</float>
+						<float key="BWGBRightInsetAlpha">0.0</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
+						<float key="BWGBLeftInsetAlpha">0.0</float>
 					</object>
 				</object>
 				<string key="NSFrameSize">{635, 466}</string>
@@ -2514,15 +2526,22 @@
 															<int key="NSColorSpace">1</int>
 															<bytes key="NSRGB">MC41NTc2NjQ2OTI0IDAuNTk4ODkyNTA5OSAwLjY0Mjg1NzEzNDMAA</bytes>
 														</object>
+														<reference key="BWGBRightBorderColor" ref="703852755"/>
 														<object class="NSColor" key="BWGBBottomBorderColor">
 															<int key="NSColorSpace">2</int>
 															<bytes key="NSRGB">MC41NTY4NjI3NzE1IDAuNTU2ODYyNzcxNSAwLjU1Njg2Mjc3MTUAA</bytes>
 														</object>
+														<reference key="BWGBLeftBorderColor" ref="703852755"/>
 														<bool key="BWGBHasTopBorder">YES</bool>
+														<bool key="BWGBHasRightBorder">NO</bool>
 														<bool key="BWGBHasBottomBorder">NO</bool>
+														<bool key="BWGBHasLeftBorder">NO</bool>
 														<bool key="BWGBHasGradient">YES</bool>
+														<bool key="BWGBisVertical">NO</bool>
 														<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
+														<float key="BWGBRightInsetAlpha">0.0</float>
 														<float key="BWGBBottomInsetAlpha">0.0</float>
+														<float key="BWGBLeftInsetAlpha">0.0</float>
 													</object>
 													<object class="WebView" id="549921697">
 														<reference key="NSNextResponder" ref="113912693"/>
@@ -2822,15 +2841,22 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC41NTc2NjQ2OTI0IDAuNTk4ODkyNTA5OSAwLjY0Mjg1NzEzNDMAA</bytes>
 						</object>
+						<reference key="BWGBRightBorderColor" ref="703852755"/>
 						<object class="NSColor" key="BWGBBottomBorderColor">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MC41NTY4NjI3NzE1IDAuNTU2ODYyNzcxNSAwLjU1Njg2Mjc3MTUAA</bytes>
 						</object>
+						<reference key="BWGBLeftBorderColor" ref="703852755"/>
 						<bool key="BWGBHasTopBorder">NO</bool>
+						<bool key="BWGBHasRightBorder">NO</bool>
 						<bool key="BWGBHasBottomBorder">YES</bool>
+						<bool key="BWGBHasLeftBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
+						<bool key="BWGBisVertical">NO</bool>
+						<float key="BWGBTopInsetAlpha">0.0</float>
+						<float key="BWGBRightInsetAlpha">0.0</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
+						<float key="BWGBLeftInsetAlpha">0.0</float>
 					</object>
 				</object>
 				<string key="NSFrameSize">{635, 466}</string>
@@ -3245,15 +3271,22 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC41NTc2NjQ2OTI0IDAuNTk4ODkyNTA5OSAwLjY0Mjg1NzEzNDMAA</bytes>
 						</object>
+						<reference key="BWGBRightBorderColor" ref="703852755"/>
 						<object class="NSColor" key="BWGBBottomBorderColor">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MC41NTY4NjI3NzE1IDAuNTU2ODYyNzcxNSAwLjU1Njg2Mjc3MTUAA</bytes>
 						</object>
+						<reference key="BWGBLeftBorderColor" ref="703852755"/>
 						<bool key="BWGBHasTopBorder">NO</bool>
+						<bool key="BWGBHasRightBorder">NO</bool>
 						<bool key="BWGBHasBottomBorder">YES</bool>
+						<bool key="BWGBHasLeftBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
+						<bool key="BWGBisVertical">NO</bool>
+						<float key="BWGBTopInsetAlpha">0.0</float>
+						<float key="BWGBRightInsetAlpha">0.0</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
+						<float key="BWGBLeftInsetAlpha">0.0</float>
 					</object>
 				</object>
 				<string key="NSFrameSize">{247, 404}</string>
@@ -3619,15 +3652,22 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC41NTc2NjQ2OTI0IDAuNTk4ODkyNTA5OSAwLjY0Mjg1NzEzNDMAA</bytes>
 						</object>
+						<reference key="BWGBRightBorderColor" ref="703852755"/>
 						<object class="NSColor" key="BWGBBottomBorderColor">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MC41NTY4NjI3NzE1IDAuNTU2ODYyNzcxNSAwLjU1Njg2Mjc3MTUAA</bytes>
 						</object>
+						<reference key="BWGBLeftBorderColor" ref="703852755"/>
 						<bool key="BWGBHasTopBorder">NO</bool>
+						<bool key="BWGBHasRightBorder">NO</bool>
 						<bool key="BWGBHasBottomBorder">YES</bool>
+						<bool key="BWGBHasLeftBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
+						<bool key="BWGBisVertical">NO</bool>
 						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
+						<float key="BWGBRightInsetAlpha">0.0</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
+						<float key="BWGBLeftInsetAlpha">0.0</float>
 					</object>
 				</object>
 				<string key="NSFrameSize">{247, 404}</string>
@@ -3644,7 +3684,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="211579912">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3727,6 +3767,7 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{453, 131}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -6086,9 +6127,9 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{323, 232}, {756, 602}}</string>
+					<string>{{14, 232}, {756, 602}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{323, 232}, {756, 602}}</string>
+					<string>{{14, 232}, {756, 602}}</string>
 					<boolean value="NO"/>
 					<string>{196, 240}</string>
 					<string>{{202, 428}, {480, 270}}</string>
@@ -6106,9 +6147,9 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>IGKEaseInOutAnimatedView</string>
-					<string>{{227, 254}, {756, 602}}</string>
+					<string>{{14, 254}, {756, 602}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{626, 73}, {247, 404}}</string>
+					<string>{{448, 73}, {247, 404}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>CHLeftSplitView</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -6147,7 +6188,7 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					<integer value="0"/>
 					<string>{{458, 388}, {166, 60}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{153, 156}, {830, 530}}</string>
+					<string>{{31, 156}, {830, 530}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -6160,7 +6201,7 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>{{317, 390}, {635, 466}}</string>
+					<string>{{60, 390}, {635, 466}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -6206,7 +6247,7 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					<string>{{239, 416}, {187, 280}}</string>
 					<string>{{1334, 527}, {137, 117}}</string>
 					<string>{{458, 415}, {143, 22}}</string>
-					<string>{{626, 73}, {247, 404}}</string>
+					<string>{{448, 73}, {247, 404}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>IGKMatteFocusedGradientBox</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -6273,7 +6314,7 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="0"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{86, 335}, {635, 466}}</string>
+					<string>{{60, 335}, {635, 466}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -6562,39 +6603,16 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					<reference key="sourceIdentifier" ref="519005926"/>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">IGKTableOfContentsView</string>
-					<string key="superclassName">IGKEaseInOutAnimatedView</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>delegate</string>
-							<string>selectedRowIndexes</string>
-							<string>splitView</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>NSMutableIndexSet</string>
-							<string>id</string>
-						</object>
-					</object>
+					<string key="className">IGKTabContents</string>
+					<string key="superclassName">CTTabContents</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">IGKTableOfContentsView.h</string>
+						<string key="minorKey">IGKTabContents.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">IGKWindow</string>
-					<string key="superclassName">NSWindow</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">IGKWindow.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">IGKWindowController</string>
-					<string key="superclassName">NSWindowController</string>
+					<string key="className">IGKTabController</string>
+					<string key="superclassName">IGKTabContents</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -6621,7 +6639,7 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 							<string>predicateEditor:</string>
 							<string>rightFilterGroupByMenu:</string>
 							<string>rightFilterSearchField:</string>
-							<string>toggleFullscreen:</string>
+							<string>toggleFullScreen:</string>
 							<string>toggleRightFilterBar:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -6761,7 +6779,38 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">IGKWindowController.h</string>
+						<string key="minorKey">IGKTabController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">IGKTableOfContentsView</string>
+					<string key="superclassName">IGKEaseInOutAnimatedView</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>delegate</string>
+							<string>selectedRowIndexes</string>
+							<string>splitView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>NSMutableIndexSet</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">IGKTableOfContentsView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">IGKWindow</string>
+					<string key="superclassName">NSWindow</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">IGKWindow.h</string>
 					</object>
 				</object>
 			</object>
@@ -6801,6 +6850,14 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">BWToolkitFramework.framework/Headers/BWStyledTextFieldCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CTTabContents</string>
+					<string key="superclassName">NSDocument</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">ChromiumTabs.framework/Headers/CTTabContents.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -6907,6 +6964,42 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSDocument</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>printDocument:</string>
+							<string>revertDocumentToSaved:</string>
+							<string>runPageLayout:</string>
+							<string>saveDocument:</string>
+							<string>saveDocumentAs:</string>
+							<string>saveDocumentTo:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSDocument.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSDocument</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSDocumentScripting.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -7087,6 +7180,13 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="739687113">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">ChromiumTabs.framework/Headers/CTTabStripModelObserverBridge.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -7559,15 +7659,17 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">NSWindowController</string>
-					<string key="superclassName">NSResponder</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">showWindow:</string>
-						<string key="NS.object.0">id</string>
-					</object>
+					<string key="className">NSWindow</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">AppKit.framework/Headers/NSWindowController.h</string>
+						<string key="minorKey">ChromiumTabs.framework/Headers/CTBrowserWindow.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSWindow</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">ChromiumTabs.framework/Headers/NSWindow+CTThemed.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -7645,7 +7747,7 @@ ZQCUhAEqhIQLe0NHU2l6ZT1kZH2aAIOQAAAAAAAAAIaGA</bytes>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
-				<string>{128, 128}</string>
+				<string>{512, 512}</string>
 				<string>{9, 8}</string>
 				<string>{7, 2}</string>
 				<string>{11, 11}</string>
